@@ -4,9 +4,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from '../config/config';
-import { EmployeesModule } from '../ressources/employees/employees.module';
+import { EmployeesModule } from '../resources/employees/employees.module';
 import { DataImportModule } from '../data-import/data-import.module';
-import { ProjectsModule } from '../ressources/projects/projects.module';
+import { ProjectsModule } from '../resources/projects/projects.module';
 
 @Module({
   imports: [

@@ -1,9 +1,9 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { plainToClass } from 'class-transformer';
-import { Employee } from '../ressources/employees/employee.entity';
-import { EmployeesService } from '../ressources/employees/employees.service';
-import { Project } from '../ressources/projects/project.entity';
+import { Employee } from '../resources/employees/employee.entity';
+import { EmployeesService } from '../resources/employees/employees.service';
+import { Project } from '../resources/projects/project.entity';
 
 @Injectable()
 export class DataImportService {
