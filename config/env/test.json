@@ -1,0 +1,17 @@
+{
+    "port": 3100,
+    "database": {
+        "type": "sqlite",
+        "database": ":memory:",
+        "synchronize": true,
+        "logging": false,
+        "dropSchema": true,
+        "entities": [
+            "dist/**/*.entity.js"
+        ]
+    },
+    "dataSource": {
+        "token": "",
+        "employeesBaseUrL": "https://api.github.com/orgs/codecentric/members"
+    }
+}
