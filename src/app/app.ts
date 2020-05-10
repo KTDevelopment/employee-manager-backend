@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { INestApplication, Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
-import { DataImportService } from '../data-import/data-import.service';
 
 export class App {
   private app: INestApplication;
@@ -16,7 +15,6 @@ export class App {
     await this.app.listen(port, () => {
       Logger.log('Listening at http://localhost:' + port);
     });
-    await this.app.get(DataImportService).import();
   }
 
   private configureNest() {

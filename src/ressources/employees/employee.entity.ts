@@ -15,7 +15,10 @@ export class Employee extends BaseEntity {
   @IsString()
   name: string;
 
-  @OneToMany(() => Project, project => project.employee)
+  @OneToMany(() => Project, project => project.employee, { cascade: true })
   @ValidateNested()
   projects: Project[];
+
+  @Column({ type: 'simple-array' })
+  languages: string[];
 }

@@ -2,7 +2,7 @@ import { HttpModule, Module } from '@nestjs/common';
 import { DataImportService } from './data-import.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EmployeesModule } from '../ressources/employees/employees.module';
-import { EmployeesService } from '../ressources/employees/employees.service';
+import { DataImportController } from './data-import.controller';
 
 @Module({
   imports: [
@@ -13,11 +13,12 @@ import { EmployeesService } from '../ressources/employees/employees.service';
           Authorization: 'token ' + configService.get('dataSource.token')
         }
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
-    EmployeesModule
+    EmployeesModule,
   ],
-  providers: [DataImportService]
+  controllers: [DataImportController],
+  providers: [DataImportService],
 })
 export class DataImportModule {
 }

@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from '../config/config';
 import { EmployeesModule } from '../ressources/employees/employees.module';
 import { DataImportModule } from '../data-import/data-import.module';
+import { ProjectsModule } from '../ressources/projects/projects.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { DataImportModule } from '../data-import/data-import.module';
       useFactory: (configService: ConfigService) => configService.get('database'),
     }),
     EmployeesModule,
+    ProjectsModule,
     DataImportModule,
   ],
   controllers: [AppController],

@@ -15,15 +15,10 @@ export class Project extends BaseEntity {
   @IsString()
   name: string;
 
-  @Column({ nullable: true })
-  @IsString()
-  @IsOptional()
-  mainLanguage: string | null;
-
   @Column({ type: 'simple-array' })
   languages: string[];
 
-  @ManyToOne(() => Employee, employee => employee.projects, { cascade: true })
+  @ManyToOne(() => Employee, employee => employee.projects)
   @JoinColumn({ name: 'employeeId' })
   @ValidateNested()
   employee: Employee;
