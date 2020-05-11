@@ -4,6 +4,7 @@ import { plainToClass } from 'class-transformer';
 import { Employee } from '../resources/employees/employee.entity';
 import { EmployeesService } from '../resources/employees/employees.service';
 import { Project } from '../resources/projects/project.entity';
+import { CountedLanguage } from '../resources/counted-language/counted-language.entity';
 
 @Injectable()
 export class DataImportService {
@@ -31,6 +32,7 @@ export class DataImportService {
       allPlain.data.map(async (single: APIEmployeeData) => {
         const employee = plainToClass(Employee, { name: single.login });
         employee.projects = await this.getProjects(single.repos_url);
+        employee.countedLanguages = this.createCountedLanguages(employee.projects);
         return employee;
       }),
     );
@@ -47,6 +49,22 @@ export class DataImportService {
         });
       }),
     );
+  }
+
+  private createCountedLanguages(projects: Project[]): CountedLanguage[] {
+    let result: CountedLanguage[] = [];
+    projects.forEach(project => {
+      project.languages.forEach(language => {
+        const candidate = result.find(it => it.name === language);
+        if (candidate) {
+          candidate.count++;
+        } else {
+          result.push(plainToClass(CountedLanguage, { name: language, count: 1 }));
+        }
+      });
+    });
+
+    return result.sort((a,b) => a.name.localeCompare(b.name));
   }
 }
 

@@ -3,6 +3,7 @@ import { BaseEntity } from '../common/base.entity';
 import { IsInt, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Project } from '../projects/project.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { CountedLanguage } from '../counted-language/counted-language.entity';
 
 @Entity()
 export class Employee extends BaseEntity {
@@ -22,4 +23,9 @@ export class Employee extends BaseEntity {
   @OneToMany(() => Project, project => project.employee, { cascade: true })
   @ValidateNested()
   projects: Project[];
+
+  @ApiProperty({ readOnly: true, type: () => CountedLanguage, isArray: true })
+  @OneToMany(() => CountedLanguage, countedLanguage => countedLanguage.employee, { cascade: true, eager: true })
+  @ValidateNested()
+  countedLanguages: CountedLanguage[];
 }
