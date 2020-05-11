@@ -9,7 +9,11 @@ export class EmployeesService extends TypeOrmCrudService<Employee> {
     super(repo);
   }
 
-  save(employee: Employee[]): Promise<Employee[]> {
-    return this.repo.save(employee);
+  async save(employee: Employee[] | Employee): Promise<Employee[] | Employee> {
+    return this.repo.save(employee as any);
+  }
+
+  async clear() {
+    return this.repo.clear();
   }
 }

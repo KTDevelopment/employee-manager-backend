@@ -1,4 +1,4 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { plainToClass } from 'class-transformer';
 import { Employee } from '../resources/employees/employee.entity';
@@ -16,10 +16,13 @@ export class DataImportService {
 
   // @Cron(CronExpression.EVERY_HOUR)
   async import() {
+    Logger.log('start import');
     const employees = await this.loadEmployeesWithProjects();
-    console.log('start import');
+    Logger.log('clear DB');
+    await this.employeesService.clear();
+    Logger.log('populate DB');
     await this.employeesService.save(employees);
-    console.log('import finished');
+    Logger.log('import finished');
   }
 
   private async loadEmployeesWithProjects(): Promise<Employee[]> {
@@ -27,9 +30,7 @@ export class DataImportService {
     return await Promise.all(
       allPlain.data.map(async (single: APIEmployeeData) => {
         const employee = plainToClass(Employee, { name: single.login });
-        const projects = await this.getProjects(single.repos_url);
-        employee.projects = projects;
-        employee.languages = this.flatLanguagesFromProjects(projects);
+        employee.projects = await this.getProjects(single.repos_url);
         return employee;
       }),
     );
@@ -40,28 +41,12 @@ export class DataImportService {
     return await Promise.all(
       plainProjects.map(async (single: APIProjectData) => {
         const allLanguages = Object.keys((await this.httpService.get(single.languages_url).toPromise()).data);
-        if(!allLanguages.includes(single.language)) {
-          allLanguages.push(single.language)
-        }
         return plainToClass(Project, {
           name: single.name,
           languages: allLanguages,
         });
       }),
     );
-  }
-
-  private flatLanguagesFromProjects(projects: Project[]) {
-    let languages = [];
-    projects.forEach(project => {
-      project.languages.forEach(language => {
-        if (!languages.includes(language)) {
-          languages.push(language);
-        }
-      })
-    })
-
-    return languages;
   }
 }
 

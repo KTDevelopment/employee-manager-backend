@@ -8,6 +8,14 @@ import { ProjectsService } from './projects.service';
   model: {
     type: Project,
   },
+  query: {
+    join: {
+      employee: {},
+    },
+  },
+  routes: {
+    exclude: ['createOneBase','createManyBase','deleteOneBase','replaceOneBase','updateOneBase']
+  }
 })
 @ApiTags('projects')
 @Controller('projects')
