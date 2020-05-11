@@ -8,7 +8,10 @@ export class AppService {
       resources: [
         '/employees',
         '/projects'
-      ]
+      ],
+      dataImport: '/data-import',
+      documentation: '/documentation',
+      listAllEmployeesRankedByLanguage: '/employees?filter=countedLanguages.name||$eq||Java&sort=countedLanguages.count,DESC'
     };
   }
 }

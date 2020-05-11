@@ -24,7 +24,10 @@ describe('AppController (e2e)', () => {
         resources: [
           '/employees',
           '/projects'
-        ]
+        ],
+        dataImport: '/data-import',
+        documentation: '/documentation',
+        listAllEmployeesRankedByLanguage: '/employees?filter=countedLanguages.name||$eq||Java&sort=countedLanguages.count,DESC'
       });
   });
 });

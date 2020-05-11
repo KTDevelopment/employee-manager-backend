@@ -10,7 +10,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "NODE_ENV=development nest start",
     "start:dev": "NODE_ENV=development nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -35,7 +35,6 @@
     "class-validator": "^0.12.2",
     "@nestjsx/crud": "^4.6.1",
     "@nestjsx/crud-typeorm": "^4.6.1",
-    "@nestjs/schedule": "^0.3.1",
     "@nestjs/swagger": "^4.5.5",
     "@nestjs/typeorm": "^7.0.0",
     "@nestjs/config": "^0.4.1"

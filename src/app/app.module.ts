@@ -7,6 +7,7 @@ import config from '../config/config';
 import { EmployeesModule } from '../resources/employees/employees.module';
 import { DataImportModule } from '../data-import/data-import.module';
 import { ProjectsModule } from '../resources/projects/projects.module';
+import { CountedLanguageModule } from '../resources/counted-language/counted-language.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ProjectsModule } from '../resources/projects/projects.module';
     }),
     EmployeesModule,
     ProjectsModule,
+    CountedLanguageModule,
     DataImportModule,
   ],
   controllers: [AppController],

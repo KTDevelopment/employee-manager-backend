@@ -23,18 +23,4 @@ import { EmployeesService } from './employees.service';
 export class EmployeesController implements CrudController<Employee> {
   constructor(public service: EmployeesService) {
   }
-
-  get base(): CrudController<Employee> {
-    return this;
-  }
-
-  // @Override()
-  // async getOne(@ParsedRequest() req: CrudRequest) {
-  //   return serializeEmployee(await this.base.getOneBase(req));
-  // }
-  //
-  // @Override()
-  // async getMany(@ParsedRequest() req: CrudRequest) {
-  //   return serializeEmployees(await this.base.getManyBase(req));
-  // }
 }
