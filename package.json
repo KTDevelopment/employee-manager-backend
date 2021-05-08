@@ -30,7 +30,7 @@
     "rxjs": "^6.5.4",
     "sqlite3": "^4.2.0",
     "swagger-ui-express": "^4.1.4",
-    "typeorm": "0.2.22",
+    "typeorm": "0.2.25",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "@nestjsx/crud": "^4.6.1",
