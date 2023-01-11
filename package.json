@@ -32,7 +32,7 @@
     "swagger-ui-express": "^4.1.4",
     "typeorm": "0.2.22",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "@nestjsx/crud": "^4.6.1",
     "@nestjsx/crud-typeorm": "^4.6.1",
     "@nestjs/swagger": "^4.5.5",
